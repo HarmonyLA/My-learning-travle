@@ -1,0 +1,25 @@
+char *replace(char*s,char *ch,char*rh){
+  int flag=0,i;
+  int m=strlen(ch),n=strlen(rh);
+  char *p=s,rear[80];
+  while(*p!=0){
+    i=0;
+    while(*(p+i)!=0&&*(ch+i)!=0&&*(p+i)==*(ch+i)){
+      i++;
+    }
+    if(*(ch+i)==0){
+      strcpy(rear,p+m);
+      strcpy(p,rh);    //用替换字符串代替目标字符串
+      strcpy(p+n,rear）;
+      flag=1;
+    }
+    p++;
+  }
+  if(flag==1) return(s);
+  else return("no found");
+}
+
+             这个函数是通过p指针指向要修改的地方，用最简单的*（p+i）==*(ch+i)对字符串进行判断，下方判断目标字符串是否完成，若完成即匹配成功
+             进行字符串转换，将p+m后面的字符串进行保存，替换目标字符串然后再加回去，真的是妙啊！最后修改flag以助于后期返回
+               在这个过程当中呢，我们可以看到的是p指针在移动，剩下判断的这是p+i来实现的，，能够对每个字符进行识别，但是如果是这样是不是也需要有所优化呢？
+             是否可以在p的位置加上一个n的长度呢？这是后续需要修改的。
